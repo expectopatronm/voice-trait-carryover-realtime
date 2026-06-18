@@ -297,6 +297,7 @@ That distinction matters. The prompt modules describe the conceptual taxonomy. T
 ```text
 .
 ├── docs/
+│   ├── voice_trait_carryover_flow.dot
 │   ├── voice_trait_carryover_flow.mmd
 │   ├── voice_trait_carryover_flow.png
 │   └── render_flowchart.py
