@@ -2,7 +2,7 @@
 
 > A small experiment around a subtle failure mode in speech-to-speech LLM systems: the assistant can adapt to the way a user speaks, but that adaptation can disappear when a tool-call boundary interrupts the turn.
 
-![Voice trait carryover flow](docs/voice_trait_carryover_flow.svg)
+![Voice trait carryover flow](docs/voice_trait_carryover_flow.png)
 
 ## Local Experiment Snapshot
 
@@ -298,7 +298,8 @@ That distinction matters. The prompt modules describe the conceptual taxonomy. T
 .
 ├── docs/
 │   ├── voice_trait_carryover_flow.mmd
-│   └── voice_trait_carryover_flow.svg
+│   ├── voice_trait_carryover_flow.png
+│   └── render_flowchart.py
 ├── experiments/
 │   ├── build_prompt.py
 │   └── protocol_demo.py
