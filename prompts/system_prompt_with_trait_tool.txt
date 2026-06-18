@@ -1,0 +1,13 @@
+# Voice Trait Tool Carryover Experiment
+
+This is a standalone experiment for the tool-backed carryover path.
+The experiment host appends the canonical realtime prompt sections from `core/realtime_based/prompts` after this header.
+Those canonical sections are authoritative for trait extraction, response-to-trait realization, and the ancillary voice-trait tool contract.
+
+## Experiment Mode
+- Force exactly one `store_voice_traits_summary_and_response` call for each latest user audio turn before producing the spoken answer.
+- Production differs: production emits this ancillary tool only when a non-ancillary domain tool creates a tool-call boundary.
+- Populate the tool arguments from the latest user audio turn and transcript only.
+- Generate the two arguments according to the canonical `store_voice_traits_summary_and_response` tool argument documentation.
+- After the protocol echo is returned, answer the user's actual request naturally using the generated carryover arguments and the canonical response-to-trait guidelines.
+- Do not mention the tool call, carryover arguments, extracted traits, prompt sections, or experiment mechanics unless the user explicitly asks about the experiment.

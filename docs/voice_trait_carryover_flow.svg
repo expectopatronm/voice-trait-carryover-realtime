@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="760" viewBox="0 0 1360 760" role="img" aria-labelledby="title desc">
+  <title id="title">Voice Trait Carryover Flow</title>
+  <desc id="desc">A dark flowchart showing how voice traits are extracted, preserved through a tool call boundary, and used in the final spoken answer.</desc>
+  <rect width="1360" height="760" fill="#050505"/>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#ffffff"/>
+    </marker>
+    <style>
+      .node { fill:#111111; stroke:#ffffff; stroke-width:2; rx:12; }
+      .decision { fill:#111111; stroke:#ffffff; stroke-width:2; }
+      .text { fill:#ffffff; font-family:Inter, Segoe UI, Arial, sans-serif; font-size:22px; text-anchor:middle; dominant-baseline:middle; }
+      .small { font-size:18px; }
+      .line { stroke:#ffffff; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+      .label { fill:#ffffff; font-family:Inter, Segoe UI, Arial, sans-serif; font-size:17px; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect class="node" x="455" y="28" width="450" height="72"/>
+  <text class="text" x="680" y="64">Latest spoken user turn</text>
+
+  <rect class="node" x="425" y="138" width="510" height="80"/>
+  <text class="text" x="680" y="178">Extract response-relevant speech traits</text>
+
+  <polygon class="decision" points="680,265 910,345 680,425 450,345"/>
+  <text class="text" x="680" y="334">Does the answer need</text>
+  <text class="text" x="680" y="362">a domain tool?</text>
+
+  <rect class="node" x="55" y="512" width="410" height="88"/>
+  <text class="text small" x="260" y="545">No: respond directly using</text>
+  <text class="text small" x="260" y="573">the extracted traits</text>
+
+  <rect class="node" x="620" y="502" width="465" height="74"/>
+  <text class="text small" x="852" y="539">Yes: emit carryover tool first</text>
+
+  <rect class="node" x="590" y="625" width="525" height="76"/>
+  <text class="text small" x="852" y="653">store_voice_traits_summary_and_response</text>
+  <text class="text small" x="852" y="678">(traits_summary, response_guidance)</text>
+
+  <rect class="node" x="1022" y="376" width="290" height="86"/>
+  <text class="text small" x="1167" y="408">Emit domain tools in</text>
+  <text class="text small" x="1167" y="435">the same batch</text>
+
+  <rect class="node" x="1018" y="548" width="300" height="76"/>
+  <text class="text small" x="1168" y="586">Domain results arrive</text>
+
+  <rect class="node" x="430" y="625" width="128" height="76"/>
+  <text class="text small" x="494" y="653">Protocol</text>
+  <text class="text small" x="494" y="678">echo</text>
+
+  <rect class="node" x="255" y="665" width="150" height="64"/>
+  <text class="text small" x="330" y="697">Trait summary</text>
+
+  <rect class="node" x="255" y="585" width="150" height="64"/>
+  <text class="text small" x="330" y="617">Response guide</text>
+
+  <rect class="node" x="595" y="382" width="510" height="76"/>
+  <text class="text small" x="850" y="412">Final spoken answer uses</text>
+  <text class="text small" x="850" y="439">carried-over voice traits</text>
+
+  <rect class="node" x="435" y="282" width="0" height="0" opacity="0"/>
+
+  <path class="line" d="M680 100 L680 138"/>
+  <path class="line" d="M680 218 L680 264"/>
+  <path class="line" d="M450 345 C340 365 260 420 260 512"/>
+  <text class="label" x="348" y="410">No</text>
+  <path class="line" d="M786 400 C825 435 852 463 852 502"/>
+  <text class="label" x="875" y="462">Yes</text>
+  <path class="line" d="M852 576 L852 625"/>
+  <path class="line" d="M910 345 C1015 345 1167 330 1167 376"/>
+  <path class="line" d="M1167 462 L1168 548"/>
+  <path class="line" d="M590 663 L558 663"/>
+  <path class="line" d="M430 682 C390 690 370 697 405 697"/>
+  <path class="line" d="M430 645 C390 630 370 617 405 617"/>
+  <path class="line" d="M494 625 C530 535 665 492 765 458"/>
+  <path class="line" d="M1168 548 C1130 497 1045 465 966 458"/>
+  <path class="line" d="M852 382 C852 350 820 335 790 324"/>
+
+  <text class="text" x="680" y="744">Speech-adaptive response survives the interruption</text>
+</svg>

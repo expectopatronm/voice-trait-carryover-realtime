@@ -1,0 +1,17 @@
+%%{init: {"theme": "dark", "themeVariables": {"background": "#050505", "primaryColor": "#111111", "primaryTextColor": "#ffffff", "primaryBorderColor": "#ffffff", "lineColor": "#ffffff", "secondaryColor": "#050505", "tertiaryColor": "#050505", "fontFamily": "Inter, Segoe UI, sans-serif"}}}%%
+flowchart TD
+    A["Latest spoken user turn"] --> B["Extract response-relevant speech traits"]
+    B --> C{"Does the answer need a domain tool?"}
+    C -- "No" --> D["Respond directly using extracted traits"]
+    C -- "Yes" --> E["Emit ancillary carryover tool first"]
+    E --> F["store_voice_traits_summary_and_response(...)"]
+    F --> G["extracted_traits_summary"]
+    F --> H["response_to_extracted_traits_summary"]
+    E --> I["Emit domain tool calls in same tool-call batch"]
+    G --> J["Protocol echo: same normalized dictionary"]
+    H --> J
+    I --> K["Domain tool results arrive"]
+    J --> L["Final spoken answer uses carried-over traits"]
+    K --> L
+    L --> M["Speech-adaptive response survives the interruption"]
+

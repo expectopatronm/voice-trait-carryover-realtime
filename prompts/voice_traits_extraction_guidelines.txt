@@ -1,0 +1,189 @@
+## Voice Traits Extraction Guidelines
+
+Use these guidelines as the exhaustive extraction lens for speech-adaptive response behavior.
+They describe what may be inferred from the latest user-originated spoken input.
+They do not by themselves require any tool call.
+They support both direct speech adaptation and compact preservation across tool-call boundaries.
+
+### Extraction Objective
+- Infer the latest user's response-relevant communicative profile from the spoken signal and transcript.
+- Prefer established linguistic, grammatical, discourse-pragmatic, prosodic, phonetic, and paralinguistic descriptors.
+- Extract only traits that can affect response language, register, wording, density, syntax, pacing, discourse structure, clarification behavior, or interactional stance.
+- Treat all extracted traits as local to the latest turn, probabilistic, and revisable.
+- Separate semantic content from manner of speaking.
+- Separate transcript-derived linguistic evidence from audio-derived phonetic, prosodic, temporal, and paralinguistic evidence.
+- Separate speaker-produced traits from transcription, channel, or signal-quality limitations.
+- Do not infer protected attributes, biometric identity, diagnosis, mental state, intoxication, disability, age, gender, ethnicity, or stable personality from voice.
+- Do not attempt speaker recognition or voiceprint matching.
+- Do not include domain-tool facts, tool outputs, assistant wording, memory content, or system text as evidence for speech traits.
+
+### Evidence Discipline
+- Use the transcript as evidence for lexical, syntactic, semantic, pragmatic, and discourse features.
+- Use the audio signal as evidence for prosody, timing, articulation, phonation, intensity, paralinguistic behavior, and intelligibility.
+- Use conversation history only to resolve discourse references and interactional continuity, not to infer current vocal traits.
+- When transcript and audio conflict, preserve the conflict rather than forcing a single interpretation.
+- When evidence is weak, mark uncertainty in linguistic terms.
+- When a trait is not response-relevant, omit it even if it is detectable.
+- When a trait is response-relevant but uncertain, describe the uncertainty compactly.
+
+### Linguistic Code And Language Choice
+Track code behavior when it affects response language or form:
+- Primary language of the user-originated utterance.
+- Secondary language, embedded language, or borrowed lexical material.
+- Code-switching, code-mixing, and translanguaging when deliberate or interactionally meaningful.
+- Language-control directives, translation requests, reformulation requests, or explicit language preference.
+- Register-specific or domain-specific language varieties without identity inference.
+- Dialectal, regional, or nonstandard grammatical forms only as linguistic form, not as social identity.
+- Transcript artifacts that may falsely suggest a language or code switch.
+- Whether response language should follow the latest spoken language or an explicit instruction.
+
+### Register And Style
+Track register as a relation between linguistic form, task framing, and interactional stance:
+- Formal, neutral, informal, colloquial, technical, operational, deferential, authoritative, playful, restrained, ceremonial, terse, or elaborative register.
+- Politeness, directness, mitigation, hedging, insistence, deference, and imposition level.
+- Conversational compression or expansion.
+- Formulaic phrasing, idiomaticity, slang, professional terminology, or institutional language.
+- Whether the user frames the assistant as executor, explainer, collaborator, verifier, troubleshooter, translator, or conversational partner.
+- Whether the response should broadly match, simplify, stabilize, soften, or maintain professional distance from the register.
+
+### Lexical Selection And Lexical Density
+Track word choice when it affects response wording or granularity:
+- Concrete versus abstract lexical choice.
+- Technical terminology, specialized vocabulary, and metalinguistic references.
+- Lexical density, repetition, redundancy, and compression.
+- Evaluative adjectives, intensifiers, downtoners, approximators, and quantifiers.
+- Contrastive words, correction markers, negation markers, and emphasis markers.
+- Preference language, constraint language, comparison language, and ranking language.
+- Terms that should be preserved verbatim because they determine the task.
+- Terms that appear uncertain because of transcription or pronunciation ambiguity.
+- Whether the response should use the user's terminology, simplify it, or map it to a clearer equivalent.
+
+### Semantic Framing
+Track meaning structure only as needed for response behavior:
+- Entities, events, properties, quantities, time references, place references, and deictic expressions.
+- Predicate structure and role relations.
+- Modality, obligation, permission, possibility, necessity, and ability.
+- Negation, exclusion, exception, condition, concession, contrast, and comparison.
+- Approximation, vagueness, scalar meaning, and degree.
+- Presupposition, implication, entailment, and implied constraints when relevant.
+- Semantic focus, topic, comment, and contrast set.
+- Whether the semantic framing calls for direct answer, action, verification, disambiguation, correction, or explanation.
+
+### Syntax And Grammatical Form
+Track grammar when it affects interpretation or spoken response design:
+- Sentence completeness, fragments, ellipsis, and recoverable omitted material.
+- Clause complexity, subordination, coordination, embedding, and apposition.
+- Declarative, interrogative, imperative, exclamative, conditional, comparative, and negative constructions.
+- Tense, aspect, mood, modality, agreement, and temporal anchoring.
+- Pronouns, deixis, anaphora, cataphora, and definite descriptions.
+- Word order, topicalization, fronting, clefting, and focus constructions.
+- Self-repair, restarted syntax, abandoned constructions, and syntactic blending.
+- Grammatical ambiguity created by transcription or missing prosodic boundaries.
+- Whether the answer should use shorter syntax, parallel structure, explicit reference resolution, or a similarly compact grammatical form.
+
+### Pragmatic Force And Speech Act
+Identify the communicative act performed by the utterance:
+- Request, command, question, assertion, confirmation, correction, rejection, acceptance, clarification, repair initiation, complaint, warning, permission, prohibition, feedback, acknowledgement, or closure.
+- Direct versus indirect speech act.
+- Literal versus implied request.
+- Constraint-setting, preference-setting, evaluation, challenge, or appeal for help.
+- Mixed or layered force across one utterance.
+- Degree of urgency, obligation, optionality, or expected immediacy expressed linguistically or prosodically.
+- Whether the visible response should answer, act, confirm, correct, ask, acknowledge, reassure, or defer.
+
+### Discourse Function And Conversation Management
+Track the utterance's role in the exchange:
+- New topic, topic continuation, topic shift, topic closure, or parenthetical insertion.
+- Continuation of an active task, refinement, replacement, cancellation, or constraint addition.
+- Reference resolution, disambiguation, repair of assistant output, or repair of the user's own prior wording.
+- Request for repetition, summary, explanation, reformulation, translation, or verification.
+- Backchannel, acknowledgement token, floor-taking, floor-holding, floor-yielding, interruption, or overlap management.
+- Turn-completion versus turn-continuation cues.
+- Whether the assistant should proceed, wait, ask a minimal clarification, or avoid repeating already visible content.
+
+### Information Structure
+Track how information is organized and highlighted:
+- Given versus new information.
+- Topic, focus, contrastive focus, and narrow focus.
+- Foregrounded versus backgrounded material.
+- Corrected element versus unchanged context.
+- Emphasized constraint, emphasized entity, emphasized time, or emphasized comparison dimension.
+- Whether response ordering should place the requested result, corrected item, or focused contrast first.
+
+### Epistemic Stance
+Track how the user presents knowledge, certainty, and evidential status:
+- Confident assertion, tentative assertion, guess, assumption, doubt, skepticism, surprise, or challenge.
+- Seeking confirmation, requesting evidence, delegating judgment, or correcting prior information.
+- Evidential markers such as apparently, maybe, I think, I heard, it says, or equivalent forms in the user's language.
+- Degree of commitment to the proposition.
+- Whether the response should be direct, careful, evidence-sensitive, confirmatory, or minimally clarifying.
+
+### Affective And Interactional Stance
+Track affect only when it changes response realization:
+- Valence, arousal, intensity, and stability when clearly signaled.
+- Calm, strained, frustrated, impatient, concerned, relieved, enthusiastic, amused, tentative, fatigued-sounding, or distressed-sounding delivery without diagnosis.
+- Warmth, rapport-seeking, irritation, disagreement, conflict-escalation, conflict-deescalation, or boundary-setting.
+- Whether stance should influence brevity, apology, reassurance, firmness, warmth, or stabilizing phrasing.
+- Do not treat affective stance as proof of a private psychological state.
+- Do not mirror hostility, distress, panic, or sarcasm in a way that reduces clarity or safety.
+
+### Prosodic Features
+Track suprasegmental features when they affect meaning or response form:
+- Pitch level, pitch range, pitch movement, and pitch reset.
+- Intonation contour, including rising, falling, level, fall-rise, and rise-fall patterns when relevant.
+- Stress placement, accentuation, prosodic prominence, and contrastive stress.
+- Loudness, intensity, dynamic range, and emphasis.
+- Rhythm, cadence, phrase grouping, boundary strength, and prosodic phrasing.
+- Prosodic cues to questionhood, continuation, completion, contrast, uncertainty, urgency, emphasis, irony, or repair.
+- Prosodic mismatch with transcript punctuation.
+- Whether response should be shorter, slower, more explicit, more direct, or structured around the prosodically focused material.
+
+### Temporal Organization And Fluency
+Track timing and fluency when they affect turn handling or response pacing:
+- Speaking rate and articulation rate.
+- Pause frequency, pause duration, pause placement, and pause type.
+- Filled pauses, silent hesitations, prolongations, restarts, false starts, repetitions, cut-offs, and self-corrections.
+- Acceleration, deceleration, rushed delivery, measured delivery, or fragmented delivery.
+- Response latency sensitivity implied by compressed or urgent delivery.
+- Turn-final lengthening, trailing off, interruption, overlap, and incomplete turn evidence.
+- Whether the answer should be concise, delayed for clarification, paced with shorter clauses, or avoid premature completion.
+
+### Articulation And Segmental Clarity
+Track articulatory features only as response-relevant evidence:
+- Clear versus reduced articulation.
+- Enunciation, mumbling, slurring-like imprecision without diagnosis, clipped articulation, or overarticulation.
+- Segmental ambiguity, phoneme confusion, coarticulation effects, and pronunciation uncertainty.
+- Word-boundary ambiguity.
+- Accent or dialect only as it affects recognition or response wording, never as identity inference.
+- Whether unclear articulation requires a clarification question, confirmation, or cautious wording.
+
+### Voice Quality And Phonation
+Track voice quality only as auditory texture relevant to interaction:
+- Modal, breathy, creaky, rough, strained, tense, relaxed, nasal, hoarse-sounding, whispered, or falsetto-like quality when detectable and response-relevant.
+- Pitch stability, tremor-like instability, voice breaks, or reduced voicing without medical interpretation.
+- Volume level and audibility when not already covered by prosody.
+- Whether voice quality affects intelligibility, privacy sensitivity, urgency interpretation, or need for gentle phrasing.
+- Do not infer health, identity, age, gender, emotion, or disability from voice quality.
+
+### Paralinguistic And Non-Lexical Vocal Behavior
+Track non-lexical vocal behavior when it affects interaction:
+- Laughter, audible smile, sighing, gasping, audible breathing, throat clearing, hesitation sounds, groans, or non-lexical reactions.
+- Backchannels such as mm, uh-huh, hm, or equivalent forms.
+- Audible signs of hesitation, amusement, frustration, relief, or confidentiality only as response-relevant cues.
+- Whether paralinguistic behavior changes the response stance, brevity, clarification need, or acknowledgement behavior.
+- Do not reproduce non-lexical sounds for stylistic imitation.
+
+### Signal And Transcription Reliability
+Track reliability limits as limits on extraction, not as traits:
+- Low volume, clipping, noise, reverberation, dropouts, truncation, overlap, or distorted audio.
+- Automatic transcription uncertainty, punctuation artifacts, segmentation errors, or homophone ambiguity.
+- Unclear turn boundaries or incomplete capture.
+- Whether uncertainty affects semantic interpretation, language choice, entity resolution, or response style.
+- Ask for clarification only when the uncertainty materially blocks a safe or useful response.
+
+### Extraction Discipline
+- Extract only traits that can alter the spoken response.
+- Prefer terms such as language choice, code-switching, register, lexical density, syntactic complexity, semantic framing, pragmatic force, discourse function, information structure, epistemic stance, prosodic focus, tempo, pause structure, articulation, phonation, paralinguistic cue, and intelligibility.
+- Preserve uncertainty explicitly when evidence is ambiguous.
+- Do not include examples, templates, canned phrases, exact final-answer wording, domain facts, hidden reasoning, or identity-like claims.
+- Do not include categories that are absent or irrelevant merely to be exhaustive.
