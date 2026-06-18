@@ -1,8 +1,10 @@
 # Voice Trait Carryover for Realtime Speech Agents
 
+![Voice trait concept: input speech traits shape the output response](assets/voice_trait_concept.png)
+
 > A small experiment around a subtle failure mode in speech-to-speech LLM systems: the assistant can adapt to the way a user speaks, but that adaptation can disappear when a tool-call boundary interrupts the turn.
 
-![Voice trait carryover flow](docs/voice_trait_carryover_flow.png)
+![Voice trait carryover flow](assets/voice_trait_carryover_flow_uploaded.png)
 
 ## Local Experiment Snapshot
 
@@ -312,10 +314,12 @@ That distinction matters. The prompt modules describe the conceptual taxonomy. T
 ```text
 .
 ├── docs/
-│   ├── voice_trait_carryover_flow.dot
-│   ├── voice_trait_carryover_flow.mmd
-│   ├── voice_trait_carryover_flow.png
-│   └── render_flowchart.py
+│   └── voice_trait_carryover_flow.mmd
+├── assets/
+│   ├── local_experiment_voice_trait_carryover.png
+│   ├── voice_trait_carryover_flow_uploaded.png
+│   ├── voice_trait_concept.png
+│   └── render_voice_trait_concept.py
 ├── experiments/
 │   ├── build_prompt.py
 │   └── protocol_demo.py
