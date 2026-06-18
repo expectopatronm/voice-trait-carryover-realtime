@@ -41,6 +41,21 @@ This repository explores a simple preservation pattern:
 
 The key idea is not the particular tool name. The key idea is that a speech trait state can be made explicit at the exact point where realtime tool orchestration would otherwise interrupt it.
 
+## Target Model And API Surface
+
+This experiment targets GPT Realtime-style speech agents: low-latency, speech-in/speech-out models that can also emit tool calls while maintaining a stateful realtime session.
+
+The concrete model family I had in mind while building this is OpenAI/Azure GPT Realtime:
+
+- OpenAI's Realtime conversation guide describes calling a Realtime model such as `gpt-realtime-2` for speech-to-speech conversations, and says the same session event flow covers audio/text generation, image input, function calling, and session state. See [OpenAI Realtime conversations](https://developers.openai.com/api/docs/guides/realtime-conversations).
+- OpenAI's Realtime overview says voice-agent sessions are for assistants that respond to the user, call tools, and manage conversation state; the client sends audio or text and listens for model responses, tool calls, and session events. See [OpenAI Realtime and audio](https://developers.openai.com/api/docs/guides/realtime).
+- Azure's GPT Realtime documentation describes GPT Realtime as part of the GPT-4o model family for low-latency "speech in, speech out" conversational interactions, lists `gpt-realtime` among supported models, and describes use with WebRTC, SIP, and WebSocket. See [Azure OpenAI GPT Realtime API for speech and audio](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/realtime-audio).
+- OpenAI's function-calling guide describes tool calling as a multi-step flow: the model emits a tool call, application code executes it, tool output is returned, and the model then produces a final response. See [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling).
+
+The docs above establish the ingredients: realtime speech, stateful sessions, model-generated responses, and tool/function calls. This repository focuses on a behavior observed while experimenting with that class of system: speech-adaptive response style can be strong in a direct no-tool answer, but weaker or lost after a function-call interruption unless the response-relevant voice traits are explicitly carried across the boundary.
+
+So the repo is not claiming that OpenAI or Azure documents this as a named bug. It is an engineering pattern for a real failure mode that appears when speech-to-speech response adaptation meets tool-calling orchestration.
+
 ## The Problem
 
 In a direct speech-to-speech turn, a realtime model may hear:
