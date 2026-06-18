@@ -4,17 +4,6 @@
 
 > A small experiment around a subtle failure mode in speech-to-speech LLM systems: the assistant can adapt to the way a user speaks, but that adaptation can disappear when a tool-call boundary interrupts the turn.
 
-![Voice trait carryover flow](assets/voice_trait_carryover_flow_uploaded.png)
-
-## Local Experiment Snapshot
-
-The screenshot below shows the standalone forced-tool experiment running locally. The yellow panel is the visible inspection surface for the ancillary carryover object. In this run, the user asked for emotional support in a brief, low-energy style. Before the final spoken answer, the model externalized two pieces of carryover state:
-
-- an extracted trait summary: English, informal, direct request for emotional support, low-energy/down mood implied, no special technical terms or ambiguity;
-- a response guidance summary: respond in English with warm, supportive wording, short sentences, gentle encouragement, and no imitation or diagnosis of vocal affect.
-
-![Local experiment showing extracted traits and response guidance](assets/local_experiment_voice_trait_carryover.png)
-
 ## The Short Version
 
 Speech assistants do not only respond to words. They respond to spoken language.
@@ -130,6 +119,10 @@ It is not a domain tool. It does not get weather, send messages, start navigatio
 
 It exists to preserve response-realization context across a tool-call boundary.
 
+The flow below represents the proposed solution path: when a domain tool is needed, the system emits the domain tool call and the voice-trait carryover call in parallel, then composes the final spoken answer from both the domain result and the preserved speech-trait summary.
+
+![Voice trait carryover flow](assets/voice_trait_carryover_flow_uploaded.png)
+
 ### Argument 1: `extracted_traits_summary`
 
 A compact linguistic summary of the latest user's response-relevant speech traits.
@@ -187,6 +180,15 @@ The host can still return a no-op protocol echo:
 ```
 
 That satisfies function-call protocol requirements without requiring this ancillary tool to block domain tool execution.
+
+## Local Experiment Snapshot
+
+The screenshot below shows the standalone forced-tool experiment running locally. The yellow panel is the visible inspection surface for the ancillary carryover object. In this run, the user asked for emotional support in a brief, low-energy style. Before the final spoken answer, the model externalized two pieces of carryover state:
+
+- an extracted trait summary: English, informal, direct request for emotional support, low-energy/down mood implied, no special technical terms or ambiguity;
+- a response guidance summary: respond in English with warm, supportive wording, short sentences, gentle encouragement, and no imitation or diagnosis of vocal affect.
+
+![Local experiment showing extracted traits and response guidance](assets/local_experiment_voice_trait_carryover.png)
 
 The important part is scheduling:
 
